@@ -68,4 +68,3 @@ alias l='ls -CF'
 
 # Default editor
 export EDITOR=vim
-
