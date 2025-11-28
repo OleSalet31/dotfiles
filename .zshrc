@@ -12,7 +12,10 @@ setopt sharehistory              # share history across sessions
 # --- Keybindings ---
 bindkey -v                       # vim-style keybindings
 
-# --- Prompt setup ---
+# Ctrl+R: incremental reverse history search (like bash)
+bindkey '^R' history-incremental-search-backward
+
+# --- Prompt setup (no theme, just a simple prompt) ---
 autoload -Uz promptinit
 promptinit
 
@@ -35,7 +38,7 @@ zstyle ':completion:*' menu select=2                                      # star
 
 # Use LS_COLORS for completion colouring
 if command -v dircolors >/dev/null 2>&1; then
-  eval "$(dircolors -b)"                                                  # enable ls colors
+  eval "$(dircolors -b)"                                                  # enable ls colors (bash format)
   zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 fi
 
@@ -58,7 +61,7 @@ precmd() { vcs_info }          # refresh VCS info before each prompt
 zstyle ':vcs_info:git:*' formats '(%b)'           # show branch name: (branch)
 zstyle ':vcs_info:git:*' actionformats '(%b|%a)'  # show action too: (branch|action)
 
-# put branch info on the right
+# put branch info on the right, plain text
 RPROMPT='${vcs_info_msg_0_}'
 
 # --- Aliases ---
